@@ -14,6 +14,7 @@ namespace GeneralStoreMVC.Controllers
         // Add the application DB Context (link to the database)
         private ApplicationDbContext _db = new ApplicationDbContext();
 
+        // GET: Product
         public ActionResult Index()
         {
             // See below (modifying ApplicationDbContext class)
@@ -74,6 +75,19 @@ namespace GeneralStoreMVC.Controllers
             return View(product);
         }
 
+        // POST : Edit// Product/Edit/{id}
+        [HttpPost, ActionName("Edit")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Entry(product).State = EntityState.Modified;
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(product);
+        }
         // GET : Details
         // Product/Details/{id}
         public ActionResult Details(int? id)
@@ -92,18 +106,5 @@ namespace GeneralStoreMVC.Controllers
             return View(product);
         }
 
-        // POST : Edit// Product/Edit/{id}
-        [HttpPost, ActionName("Edit")]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(Product product)
-        {
-            if (ModelState.IsValid)
-            {
-                _db.Entry(product).State = EntityState.Modified;
-                _db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(product);
-        }
     }
 }
