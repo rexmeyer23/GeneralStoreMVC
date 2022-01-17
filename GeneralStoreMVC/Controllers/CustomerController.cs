@@ -28,6 +28,8 @@ namespace GeneralStoreMVC.Controllers
 
         // GET: Delete
         // Customer/Delete/{id}
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(int? id)
         {
             if (id == null)

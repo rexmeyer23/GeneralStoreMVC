@@ -106,3 +106,6 @@ C:\Users\rex_m\Desktop\GeneralStore\GeneralStoreMVC\GeneralStoreMVC\obj\Debug\Ge
 C:\Users\rex_m\Desktop\GeneralStore\GeneralStoreMVC\GeneralStoreMVC\obj\Debug\GeneralStoreMVC.csproj.CopyComplete
 C:\Users\rex_m\Desktop\GeneralStore\GeneralStoreMVC\GeneralStoreMVC\obj\Debug\GeneralStoreMVC.dll
 C:\Users\rex_m\Desktop\GeneralStore\GeneralStoreMVC\GeneralStoreMVC\obj\Debug\GeneralStoreMVC.pdb
+C:\Users\rex_m\Desktop\GeneralStore\GeneralStoreMVC\GeneralStoreMVC\obj\Debug\GeneralStoreMVC.Migrations.InitialCreate.resources
+C:\Users\rex_m\Desktop\GeneralStore\GeneralStoreMVC\GeneralStoreMVC\obj\Debug\GeneralStoreMVC.csproj.GenerateResource.cache
+C:\Users\rex_m\Desktop\GeneralStore\GeneralStoreMVC\GeneralStoreMVC\obj\Debug\GeneralStoreMVC.Migrations.ProductCustomerMigration.resources
