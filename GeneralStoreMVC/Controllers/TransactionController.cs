@@ -1,6 +1,7 @@
 ﻿using GeneralStoreMVC.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -73,6 +74,47 @@ namespace GeneralStoreMVC.Controllers
             if (transaction == null)
             {
                 return HttpNotFound();
+            }
+            return View(transaction);
+        }
+
+        // POST: Create
+        public ActionResult Create(Transaction transaction)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Transactions.Add(transaction);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(transaction);
+        }
+
+        // POST: Delete
+        // Transaction/Delete/{id}
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
+        {
+            Transaction transaction = _db.Transactions.Find(id);
+            _db.Transactions.Remove(transaction);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+
+        // POST: Edit
+        // Transaction/Edit/{id}
+        [HttpPost, ActionName("Edit")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Transaction transaction)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Entry(transaction).State = EntityState.Modified;
+                _db.SaveChanges();
+                return RedirectToAction("Index");
             }
             return View(transaction);
         }
