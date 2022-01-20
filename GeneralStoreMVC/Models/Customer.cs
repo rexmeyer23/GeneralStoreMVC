@@ -15,8 +15,14 @@ namespace GeneralStoreMVC.Models
         public string FirstName { get; set; }
         [Required]
         [Display(Name = "Last Name")]
-        public string LastName { get; set; }    
+        public string LastName { get; set; }
         [Display(Name = "Full Name")]
-        public string FullName { get; set; }
+        public string FullName
+        {
+            get
+            {
+                return FirstName + " " + LastName;
+            }
+        }
     }
 }

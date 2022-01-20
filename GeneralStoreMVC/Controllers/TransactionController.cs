@@ -83,10 +83,22 @@ namespace GeneralStoreMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Transactions.Add(transaction);
-                _db.SaveChanges();
-                return RedirectToAction("Index");
+                Product product = _db.Products.Find(transaction.ProductID);
+                if(transaction.NumberOfItems <= product.InventoryCount)
+                {
+                    _db.Transactions.Add(transaction);
+                    product.InventoryCount -= transaction.NumberOfItems;
+                    _db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError("Number of Items", "More inventory is needed to complete transaction.");
+                }
+                
             }
+            ViewBag.Customers = new SelectList(_db.Customers.OrderBy(c => c.FirstName).ToList());
+            ViewBag.Products = new SelectList(_db.Products.OrderBy(p => p.Name).ToList());
             return View(transaction);
         }
 
@@ -97,7 +109,9 @@ namespace GeneralStoreMVC.Controllers
         public ActionResult Delete(int id)
         {
             Transaction transaction = _db.Transactions.Find(id);
+            Product product = _db.Products.Find(transaction.ProductID);
             _db.Transactions.Remove(transaction);
+            product.InventoryCount += transaction.NumberOfItems;
             _db.SaveChanges();
             return RedirectToAction("Index");
         }
