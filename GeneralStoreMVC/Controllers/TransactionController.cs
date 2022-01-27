@@ -31,7 +31,7 @@ namespace GeneralStoreMVC.Controllers
             };
 
             ViewBag.CustomerID = new SelectList(_db.Customers, "CustomerId", "FullName");
-            ViewBag.CustomerID = new SelectList(_db.Products, "ProductId", "Name");
+            ViewBag.ProductID = new SelectList(_db.Products, "ProductId", "Name");
             return View();
         }
 
