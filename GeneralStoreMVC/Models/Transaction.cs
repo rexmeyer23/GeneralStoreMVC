@@ -10,6 +10,7 @@ namespace GeneralStoreMVC.Models
     public class Transaction
     {
         [Key]
+        [Display(Name = "Trans ID")]
         public int TransactionID { get; set; }
         [Required]
         [ForeignKey((nameof(Customer)))]
@@ -20,6 +21,13 @@ namespace GeneralStoreMVC.Models
         public int ProductID { get; set; }
         public virtual Product Product { get; set; }
         public int NumberOfItems { get; set; }
+        //public decimal TotalCost
+        //{
+        //    get
+        //    {
+        //        return this.Product.Price * this.NumberOfItems;
+        //    }
+        //}
         public DateTime TransactionDate { get; set; }
 
     }

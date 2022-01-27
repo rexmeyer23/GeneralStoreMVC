@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace GeneralStoreMVC.Controllers
 {
+    //controller controls what data gets sent to the view
     public class CustomerController : Controller
     {
         private ApplicationDbContext _db =  new ApplicationDbContext();
@@ -20,11 +21,12 @@ namespace GeneralStoreMVC.Controllers
             return View(orderedList);
         }
 
-        // GET: Create
+        // GET: Customer
         public ActionResult Create()
         {
             return View();
         }
+        //get create returns view that is associated with create action method, navigate user to view tied with controller method
 
         // GET: Delete
         // Customer/Delete/{id}

@@ -15,16 +15,23 @@ namespace GeneralStoreMVC.Controllers
         // GET: Transaction
         public ActionResult Index()
         {
-            List<Transaction> transactionList = _db.Transactions.ToList();
-            List<Transaction> orderedList = transactionList.OrderBy(trans => trans.Customer).ToList();
-            return View(transactionList);
+            //List<Transaction> transactionList = _db.Transactions.ToList();
+            //List<Transaction> orderedList = transactionList.OrderBy(trans => trans.Customer).ToList();
+            var transactions = _db.Transactions.Include(t => t.Customer).Include(t => t.Product).ToList();
+            return View(transactions);
         }
 
         //GET: Create
         public ActionResult Create()
         {
-            ViewBag.CustomerID = new SelectList(_db.Customers);
-            ViewBag.CustomerID = new SelectList(_db.Products);
+            ViewData["Countries"] = new List<string>()
+            {
+                "japan",
+                "france"
+            };
+
+            ViewBag.CustomerID = new SelectList(_db.Customers, "CustomerId", "FullName");
+            ViewBag.CustomerID = new SelectList(_db.Products, "ProductId", "Name");
             return View();
         }
 
@@ -79,6 +86,8 @@ namespace GeneralStoreMVC.Controllers
         }
 
         // POST: Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Transaction transaction)
         {
             if (ModelState.IsValid)
@@ -126,7 +135,9 @@ namespace GeneralStoreMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Entry(transaction).State = EntityState.Modified;
+                var modifyTransaction = _db.Transactions.Find(transaction.TransactionID);
+
+                _db.Entry(modifyTransaction).State = EntityState.Modified;
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }

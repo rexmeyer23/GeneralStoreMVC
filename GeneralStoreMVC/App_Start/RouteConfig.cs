@@ -13,6 +13,7 @@ namespace GeneralStoreMVC
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //here is where define url for routes we take
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

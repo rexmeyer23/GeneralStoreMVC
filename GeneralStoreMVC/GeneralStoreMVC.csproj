@@ -185,6 +185,10 @@
     <Compile Include="Migrations\202201170643191_ProductCustomerMigration.designer.cs">
       <DependentUpon>202201170643191_ProductCustomerMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202201270056130_TransactionAdded.cs" />
+    <Compile Include="Migrations\202201270056130_TransactionAdded.designer.cs">
+      <DependentUpon>202201270056130_TransactionAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -289,6 +293,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202201170643191_ProductCustomerMigration.resx">
       <DependentUpon>202201170643191_ProductCustomerMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202201270056130_TransactionAdded.resx">
+      <DependentUpon>202201270056130_TransactionAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

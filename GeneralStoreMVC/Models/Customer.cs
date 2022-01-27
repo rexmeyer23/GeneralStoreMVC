@@ -24,5 +24,10 @@ namespace GeneralStoreMVC.Models
                 return FirstName + " " + LastName;
             }
         }
+        public Customer()
+        {
+            this.Transaction = new HashSet<Transaction>();
+        }
+        public virtual ICollection<Transaction> Transaction { get; set;}
     }
 }
